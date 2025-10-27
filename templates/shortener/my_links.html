@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>我的短網址</title>
+  </head>
+  <body>
+    <h2>我的短網址</h2>
+    <p>
+      <a href="{% url 'create_short' %}">回到建立頁</a> |
+      <a href="/accounts/logout/">登出</a>
+    </p>
+
+    {% if links %}
+    <table border="1" cellpadding="6">
+      <tr>
+        <th>短碼</th>
+        <th>短網址</th>
+        <th>原始網址</th>
+        <th>點擊數</th>
+        <th>建立時間</th>
+        <th>操作</th>
+      </tr>
+      {% for l in links %}
+      <tr>
+        <td>{{ l.short_code }}</td>
+        <td>
+          <a href="{{ base }}{{ l.short_code }}/" target="_blank"
+            >{{ base }}{{ l.short_code }}/</a
+          >
+        </td>
+        <td style="max-width: 520px; overflow-wrap: anywhere">
+          {{ l.original_url }}
+        </td>
+        <td>{{ l.click_count }}</td>
+        <td>{{ l.created_at }}</td>
+        <td><a href="{% url 'link_detail' l.short_code %}">查看詳情</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <p>目前沒有短網址，回到上頁建立一個吧！</p>
+    {% endif %}
+  </body>
+</html>

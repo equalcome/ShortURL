@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>短碼詳情：{{ link.short_code }}</title>
+  </head>
+  <body>
+    <h2>短碼詳情</h2>
+    <p>
+      <b>短碼：</b> {{ link.short_code }}<br />
+      <b>短網址：</b>
+      <a href="{{ base }}{{ link.short_code }}/" target="_blank"
+        >{{ base }}{{ link.short_code }}/</a
+      ><br />
+      <b>原始網址：</b>
+      <a href="{{ link.original_url }}" target="_blank"
+        >{{ link.original_url }}</a
+      ><br />
+      <b>總點擊數：</b> {{ link.click_count }}<br />
+      <b>建立時間：</b> {{ link.created_at }}<br />
+    </p>
+
+    <p><a href="{% url 'my_links' %}">← 回我的短網址</a></p>
+
+    <h3>最近點擊紀錄（最多 100 筆）</h3>
+    {% if records %}
+    <table border="1" cellpadding="6">
+      <tr>
+        <th>#</th>
+        <th>來源 IP</th>
+        <th>時間</th>
+      </tr>
+      {% for r in records %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{{ r.ip_address }}</td>
+        <td>{{ r.created_at }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% else %}
+    <p>尚無點擊紀錄。</p>
+    {% endif %}
+  </body>
+</html>

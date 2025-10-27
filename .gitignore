@@ -1,0 +1,48 @@
+# ===== Python / Django =====
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+*.egg
+*.manifest
+*.spec
+db.sqlite3
+
+# ===== 虛擬環境 =====
+venv/
+env/
+ENV/
+.venv/
+.Python
+
+# ===== 環境設定 =====
+.env
+.env.local
+.env.*.local
+
+# ===== Django =====
+staticfiles/
+media/
+*.log
+*.pot
+*.mo
+*.pyc
+.DS_Store
+
+# ===== IDE / 系統檔 =====
+.idea/
+.vscode/
+*.swp
+Thumbs.db
+desktop.ini
+
+# ===== 測試與 Coverage =====
+.coverage
+htmlcov/
+.tox/
+nosetests.xml
+coverage.xml
+pytest_cache/
+.cache/
