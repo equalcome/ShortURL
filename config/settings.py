@@ -25,7 +25,7 @@ load_dotenv(BASE_DIR / '.env')  # 本機讀 .env；雲端用 Render 的 Environm
 SECRET_KEY = os.getenv('SECRET_KEY', 'dev-secret')
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-# 主機白名單【修改：雲端要填你 Render 網域】
+# 主機白名單【修改：雲端要填 Render 網域】
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
 
 
@@ -110,7 +110,7 @@ DATABASES = {
     }
 }
 
-# 若雲端提供 DATABASE_URL，切換到 Postgres
+# 雲端提供 DATABASE_URL，切換到 Postgres
 DATABASE_URL = os.getenv("DATABASE_URL")
 if DATABASE_URL:
     import dj_database_url
