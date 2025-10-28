@@ -1,7 +1,15 @@
+## 🌐 Demo Site
+
+🔗 [https://shorturl-rklc.onrender.com](https://shorturl-rklc.onrender.com)
+
+> ⚠️ 部署於 Render 免費方案，可能在閒置時進入睡眠狀態，首次開啟需等待約 20 秒啟動。
+
+---
+
 # 🔗 Django 短網址服務（支援 Google / Facebook 登入）
 
-這是一個使用 **Django + django-allauth** 開發的完整短網址系統，
-支援 **Google / Facebook 登入**、短網址建立、點擊紀錄與 IP 追蹤，
+這是一個使用 **Django + django-allauth** 開發的完整短網址系統，  
+支援 **Google / Facebook 登入**、短網址建立、點擊紀錄與 IP 追蹤，  
 並已部署於 **Render 雲端平台**。
 
 ---
