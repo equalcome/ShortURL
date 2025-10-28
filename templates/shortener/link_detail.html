@@ -1,44 +1,124 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-Hant">
   <head>
+    <meta charset="UTF-8" />
     <title>短碼詳情：{{ link.short_code }}</title>
+    <style>
+      body {
+        font-family: "Noto Sans TC", sans-serif;
+        background-color: #f5f6f7;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        min-height: 100vh;
+        padding: 40px 16px;
+      }
+
+      .container {
+        background: #fff;
+        padding: 30px 40px;
+        border-radius: 12px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        width: 100%;
+        max-width: 700px;
+      }
+
+      h2 {
+        color: #222;
+        margin-bottom: 16px;
+      }
+
+      p {
+        line-height: 1.7;
+        color: #444;
+      }
+
+      a {
+        color: #007bff;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .back {
+        display: inline-block;
+        margin-bottom: 16px;
+        font-size: 14px;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 12px;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 8px 10px;
+        text-align: center;
+      }
+
+      th {
+        background-color: #f0f2f5;
+      }
+
+      tr:nth-child(even) {
+        background-color: #fafafa;
+      }
+
+      tr:hover {
+        background-color: #f1f1f1;
+      }
+
+      .empty {
+        text-align: center;
+        color: #888;
+        margin-top: 12px;
+      }
+    </style>
   </head>
   <body>
-    <h2>短碼詳情</h2>
-    <p>
-      <b>短碼：</b> {{ link.short_code }}<br />
-      <b>短網址：</b>
-      <a href="{{ base }}{{ link.short_code }}/" target="_blank"
-        >{{ base }}{{ link.short_code }}/</a
-      ><br />
-      <b>原始網址：</b>
-      <a href="{{ link.original_url }}" target="_blank"
-        >{{ link.original_url }}</a
-      ><br />
-      <b>總點擊數：</b> {{ link.click_count }}<br />
-      <b>建立時間：</b> {{ link.created_at }}<br />
-    </p>
+    <div class="container">
+      <a href="{% url 'my_links' %}" class="back">← 回我的短網址</a>
 
-    <p><a href="{% url 'my_links' %}">← 回我的短網址</a></p>
+      <h2>短碼詳情</h2>
+      <p>
+        <b>短碼：</b> {{ link.short_code }}<br />
+        <b>短網址：</b>
+        <a href="{{ base }}{{ link.short_code }}/" target="_blank"
+          >{{ base }}{{ link.short_code }}/</a
+        ><br />
+        <b>原始網址：</b>
+        <a href="{{ link.original_url }}" target="_blank"
+          >{{ link.original_url }}</a
+        ><br />
+        <b>總點擊數：</b> {{ link.click_count }}<br />
+        <b>建立時間：</b> {{ link.created_at }}<br />
+      </p>
 
-    <h3>最近點擊紀錄（最多 100 筆）</h3>
-    {% if records %}
-    <table border="1" cellpadding="6">
-      <tr>
-        <th>#</th>
-        <th>來源 IP</th>
-        <th>時間</th>
-      </tr>
-      {% for r in records %}
-      <tr>
-        <td>{{ forloop.counter }}</td>
-        <td>{{ r.ip_address }}</td>
-        <td>{{ r.created_at }}</td>
-      </tr>
-      {% endfor %}
-    </table>
-    {% else %}
-    <p>尚無點擊紀錄。</p>
-    {% endif %}
+      <h3>最近點擊紀錄（最多 100 筆）</h3>
+      {% if records %}
+      <table>
+        <tr>
+          <th>#</th>
+          <th>來源 IP</th>
+          <th>時間</th>
+        </tr>
+        {% for r in records %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ r.ip_address }}</td>
+          <td>{{ r.created_at }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% else %}
+      <p class="empty">尚無點擊紀錄。</p>
+      {% endif %}
+    </div>
   </body>
 </html>

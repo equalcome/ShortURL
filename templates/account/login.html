@@ -1,0 +1,148 @@
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <title>登入</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      body {
+        margin: 0;
+        font-family: "Segoe UI", "微軟正黑體", system-ui, -apple-system,
+          sans-serif;
+        background: #f6f7fb;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+      }
+      .card {
+        width: 100%;
+        max-width: 420px;
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        padding: 36px 30px;
+        text-align: center;
+      }
+      h1 {
+        font-size: 26px;
+        margin-bottom: 24px;
+      }
+      label {
+        display: block;
+        text-align: left;
+        font-weight: 600;
+        margin: 10px 0 5px;
+      }
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 14px;
+      }
+      .btn {
+        width: 100%;
+        background-color: #0bdb6cff;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        padding: 10px;
+        margin-top: 15px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      .btn:hover {
+        background-color: #0b5ed7;
+      }
+      .register {
+        margin-top: 15px;
+        font-size: 14px;
+      }
+      .register a {
+        color: #0d6efd;
+        text-decoration: none;
+      }
+      .register a:hover {
+        text-decoration: underline;
+      }
+
+      /* 第三方登入區塊 */
+      .providers {
+        margin-top: 25px;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .provider-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 12px;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 16px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+      .provider-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      .google-btn {
+        background-color: #db4437;
+      }
+      .facebook-btn {
+        background-color: #1877f2;
+      }
+      .provider-btn img {
+        width: 22px;
+        height: 22px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>登入</h1>
+
+      <form method="post" action="{% url 'account_login' %}">
+        {% csrf_token %} {{ form.as_p }}
+        <button type="submit" class="btn">登入</button>
+      </form>
+
+      <div class="register">
+        若沒有帳號，請先 <a href="{% url 'account_signup' %}">註冊</a>
+      </div>
+
+      <div class="providers">
+        <p style="color: #555; font-size: 15px; margin-bottom: 4px">
+          或使用第三方登入：
+        </p>
+        <a
+          href="{% provider_login_url 'google' %}"
+          class="provider-btn google-btn"
+        >
+          <img
+            src="https://www.svgrepo.com/show/475656/google-color.svg"
+            alt="Google"
+          />
+          以 Google 登入
+        </a>
+        <a
+          href="{% provider_login_url 'facebook' %}"
+          class="provider-btn facebook-btn"
+        >
+          <img
+            src="https://www.svgrepo.com/show/452196/facebook-1.svg"
+            alt="Facebook"
+          />
+          以 Facebook 登入
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
