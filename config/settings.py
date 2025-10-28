@@ -28,6 +28,12 @@ DEBUG = os.getenv('DEBUG', 'True') == 'True'
 # 主機白名單【修改：雲端要填 Render 網域】
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',')
 
+# CSRF 信任網域
+CSRF_TRUSTED_ORIGINS = os.getenv(
+    'CSRF_TRUSTED_ORIGINS',
+    'http://127.0.0.1:8000,http://localhost:8000'
+).split(',')
+
 
 # Application definition
 

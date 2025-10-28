@@ -17,9 +17,13 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),   # 社群登入路由
+    path('privacy', TemplateView.as_view(template_name='privacy.html')),
+    path('delete-data', TemplateView.as_view(template_name='delete-data.html')),
+    path('terms', TemplateView.as_view(template_name='terms.html')),
     path('', include('shortener.urls')),          # 之後短網址功能會在這裡
 ]
